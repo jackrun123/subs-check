@@ -155,10 +155,10 @@ func (pc *ProxyChecker) checkProxy(proxy map[string]any) *Result {
 	}
 	defer httpClient.Close()
 
-	cloudflare, err := platfrom.CheckCloudflare(httpClient.Client)
-	if err != nil || !cloudflare {
-		return nil
-	}
+	//cloudflare, err := platfrom.CheckCloudflare(httpClient.Client)
+	//if err != nil || !cloudflare {
+	//	return nil
+	//}
 
 	google, err := platfrom.CheckGoogle(httpClient.Client)
 	if err != nil || !google {
@@ -181,7 +181,7 @@ func (pc *ProxyChecker) checkProxy(proxy map[string]any) *Result {
 	pc.updateProxyName(proxy, speed)
 	pc.incrementAvailable()
 
-	res.Cloudflare = cloudflare
+	//res.Cloudflare = cloudflare
 	res.Google = google
 	// res.Openai = openai
 	// res.Youtube = youtube
