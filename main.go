@@ -10,13 +10,13 @@ import (
 
 	"log/slog"
 
-	"github.com/beck-8/subs-check/check"
-	"github.com/beck-8/subs-check/config"
-	"github.com/beck-8/subs-check/save"
-	"github.com/beck-8/subs-check/save/method"
-	"github.com/beck-8/subs-check/utils"
 	"github.com/fsnotify/fsnotify"
 	"github.com/gin-gonic/gin"
+	"github.com/jackrun123/subs-check/check"
+	"github.com/jackrun123/subs-check/config"
+	"github.com/jackrun123/subs-check/save"
+	"github.com/jackrun123/subs-check/save/method"
+	"github.com/jackrun123/subs-check/utils"
 	"gopkg.in/yaml.v3"
 )
 

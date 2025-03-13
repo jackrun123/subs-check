@@ -12,8 +12,8 @@ import (
 
 	"log/slog"
 
-	"github.com/beck-8/subs-check/config"
-	"github.com/beck-8/subs-check/proxy/parser"
+	"github.com/jackrun123/subs-check/config"
+	"github.com/jackrun123/subs-check/proxy/parser"
 	"gopkg.in/yaml.v3"
 )
 

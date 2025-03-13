@@ -101,7 +101,7 @@ go run main.go -f /path/to/config.yaml
 但是 apprise 库是用 Python 编写的，Cloudflare 最近发布的 python worker在部署 apprise 时仍然存在问题  
 所以我们下边提供两种部署方式的教程（当然实际不止两种）
 ### Vercel serverless 部署
-1. 请单击[**此处**](https://vercel.com/new/clone?repository-url=https://github.com/beck-8/apprise_vercel)即可在您的 Vercel 帐户上部署 Apprise  
+1. 请单击[**此处**](https://vercel.com/new/clone?repository-url=https://github.com/jackrun123/apprise_vercel)即可在您的 Vercel 帐户上部署 Apprise  
 2. 部署后，您将获得一个类似 `https://testapprise-beck8s-projects.vercel.app/` 的链接，在其后附加`/notify` ，然后您将获得 Apprise API 服务器的链接： `https://testapprise-beck8s-projects.vercel.app/notify`
 3. 请将你的Vercel项目添加一个自定义域名，因为Vercel在国内几乎访问不了
 
