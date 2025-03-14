@@ -1,8 +1,8 @@
 # 订阅合并转换检测工具
+原始项目：https://github.com/bestruirui/BestSub
+分支项目：https://github.com/beck-8/subs-check
 
-对比原项目是修复了一些逻辑、简化了一些东西、增加了一些功能
-
-**请尽快升级至v1.1.0+，大幅减少内存占用！！**
+本项目是基于分支项目，做少许改动适应github action使用。
 
 ## 预览
 
