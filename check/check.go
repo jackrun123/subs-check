@@ -222,31 +222,36 @@ func (pc *ProxyChecker) updateProxyName(proxy map[string]any, speed int) {
 
 // showProgress 显示进度条
 func (pc *ProxyChecker) showProgress(done chan bool) {
+	lastCount := int32(0)
 	for {
 		select {
 		case <-done:
+			pc.printProgress()
 			fmt.Println()
 			return
 		default:
 			current := atomic.LoadInt32(&pc.progress)
-			available := atomic.LoadInt32(&pc.available)
-
-			if pc.proxyCount == 0 {
-				time.Sleep(100 * time.Millisecond)
-				break
+			if pc.proxyCount > 0 && lastCount != current {
+				pc.printProgress()
 			}
-
-			// if 0/0 = NaN ,shoule panic
-			percent := float64(current) / float64(pc.proxyCount) * 100
-			fmt.Printf("\r进度: [%-50s] %.1f%% (%d/%d) 可用: %d",
-				strings.Repeat("=", int(percent/2))+">",
-				percent,
-				current,
-				pc.proxyCount,
-				available)
-			time.Sleep(100 * time.Millisecond)
+			time.Sleep(1000 * time.Millisecond)
+			lastCount = current
 		}
+
 	}
+}
+
+func (pc *ProxyChecker) printProgress() {
+	current := atomic.LoadInt32(&pc.progress)
+	available := atomic.LoadInt32(&pc.available)
+	// if 0/0 = NaN ,shoule panic
+	percent := float64(current) / float64(pc.proxyCount) * 100
+	fmt.Printf("\r进度: [%-50s] %.1f%% (%d/%d) 可用: %d",
+		strings.Repeat("=", int(percent/2))+">",
+		percent,
+		current,
+		pc.proxyCount,
+		available)
 }
 
 // 辅助方法
