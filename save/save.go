@@ -105,7 +105,7 @@ func (cs *ConfigSaver) Save() error {
 		}
 
 		category.Name = strings.TrimSuffix(category.Name, ".yaml") + ".txt"
-		if err := cs.saveCategoryBase64(category); err != nil {
+		if err := cs.saveCategoryTxt(category); err != nil {
 			slog.Error(fmt.Sprintf("保存到%s失败: %v", config.GlobalConfig.SaveMethod, err))
 
 			continue
@@ -145,8 +145,8 @@ func (cs *ConfigSaver) saveCategory(category ProxyCategory) error {
 	return nil
 }
 
-// saveCategoryBase64 用base64保存单个类别的代理
-func (cs *ConfigSaver) saveCategoryBase64(category ProxyCategory) error {
+// saveCategoryTxt 用base64保存单个类别的代理
+func (cs *ConfigSaver) saveCategoryTxt(category ProxyCategory) error {
 	if len(category.Proxies) == 0 {
 		slog.Warn(fmt.Sprintf("base64节点为空，跳过保存: %s, saveMethod: %s", category.Name, config.GlobalConfig.SaveMethod))
 		return nil
@@ -161,9 +161,9 @@ func (cs *ConfigSaver) saveCategoryBase64(category ProxyCategory) error {
 		return fmt.Errorf("生成urls %s 失败: %w", category.Name, err)
 	}
 	srcBytes := urls.Bytes()
-	dstBytes := make([]byte, base64.StdEncoding.EncodedLen(len(srcBytes)))
-	base64.StdEncoding.Encode(dstBytes, srcBytes)
-	if err := cs.saveMethod(dstBytes, category.Name); err != nil {
+	//dstBytes := make([]byte, base64.StdEncoding.EncodedLen(len(srcBytes)))
+	//base64.StdEncoding.Encode(dstBytes, srcBytes)
+	if err := cs.saveMethod(srcBytes, category.Name); err != nil {
 		return fmt.Errorf("保存base64 %s 失败: %w", category.Name, err)
 	}
 
